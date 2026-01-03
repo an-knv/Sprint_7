@@ -1,14 +1,12 @@
 import io.restassured.response.Response;
 import model.Courier;
 import model.CourierCreds;
-import model.CourierLoginResponse;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import steps.CourierSteps;
 
 import static generator.CourierGenerator.randomCourier;
-import static model.CourierCreds.credsFrom;
 import static org.apache.http.HttpStatus.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

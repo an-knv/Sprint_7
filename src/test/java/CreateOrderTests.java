@@ -1,15 +1,10 @@
 import io.restassured.response.Response;
-import model.Courier;
-import model.CourierCreds;
 import model.Order;
-import model.OrderResponse;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import steps.CourierSteps;
 import steps.OrderSteps;
 
 
@@ -41,8 +36,6 @@ public class CreateOrderTests {
         assertTrue(track > 0, "В ответе положительный track");
         System.out.println("Заказ успешно создан с track: " + track);
         orderSteps.cancelOrder(track);
-        Response responseCancel = orderSteps.cancelOrder(track);
-
         System.out.println("Отменен заказ: " + track);
     }
 
@@ -70,7 +63,7 @@ public class CreateOrderTests {
         int track = orderSteps.extractTrackFromResponse(response);
         System.out.println("Заказ успешно создан с track: " + track + ", цвета: " + colors);
         // Отменяем заказ
-        Response cancelResponse = orderSteps.cancelOrder(track);
+        orderSteps.cancelOrder(track);
         System.out.println("Отменен заказ с track: " + track);
     }
 

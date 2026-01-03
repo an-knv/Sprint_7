@@ -1,11 +1,11 @@
 import io.restassured.response.Response;
-import model.CourierCreds;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import steps.OrderSteps;
 
 import static org.apache.http.HttpStatus.SC_OK;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class OrderListTests {

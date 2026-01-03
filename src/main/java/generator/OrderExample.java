@@ -2,7 +2,6 @@ package generator;
 
 import model.Order;
 
-import static utils.Utils.randomString;
 
 public class OrderExample {
     public static Order randomOrder() {

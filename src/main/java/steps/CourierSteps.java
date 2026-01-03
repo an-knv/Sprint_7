@@ -9,7 +9,6 @@ import model.CourierLoginResponse;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
-import static model.CourierCreds.credsFrom;
 
 public class CourierSteps {
     private static final String API_V1_COURIER = "/api/v1/courier";

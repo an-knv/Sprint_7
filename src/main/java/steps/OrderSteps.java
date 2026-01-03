@@ -49,10 +49,7 @@ public class OrderSteps {
                 .when()
                 .put(API_V1_ORDER_CANCEL);
     }
-    @Step("Проверить код ответа отмены")
-    public static void compareResponseCancelOrderStatusCode(Response responseCancel, int expectedStatusCode) {
-        responseCancel.then().assertThat().statusCode(expectedStatusCode);
-    }
+
     @Step("Получить список заказов")
     public Response getOrders() {
         return given()
