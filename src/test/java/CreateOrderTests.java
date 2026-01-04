@@ -7,8 +7,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import steps.OrderSteps;
 
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -23,7 +21,7 @@ public class CreateOrderTests {
 
     @Test
     @DisplayName("Создание заказа")
-    public void createOrder() {
+    public void createOrderTest() {
         //создаем случайного курьера
         Order order = randomOrder();
         //отправляем запрос на создание заказа
@@ -42,7 +40,7 @@ public class CreateOrderTests {
     @ParameterizedTest(name = "Создание заказа с разными цветами")
     @MethodSource("colorCombinations")
     @DisplayName("Проверка создания заказа с разными цветами")
-    public void createOrderWithDifferentColors(List<String> colors) {
+    public void createOrderWithDifferentColorsTest(List<String> colors) {
         // Создаем заказ с указанными цветами
         Order order = new Order(
                 "Anna",
@@ -70,10 +68,10 @@ public class CreateOrderTests {
     // Тестовые данные
     private static Stream<Arguments> colorCombinations() {
         return Stream.of(
-                Arguments.of(Arrays.asList("BLACK")),
-                Arguments.of(Arrays.asList("GREY")),
-                Arguments.of(Arrays.asList("BLACK", "GREY")),
-                Arguments.of(Arrays.asList())
+                Arguments.of(List.of("BLACK")),
+                Arguments.of(List.of("GREY")),
+                Arguments.of(List.of("BLACK", "GREY")),
+                Arguments.of(List.of())
         );
     }
 

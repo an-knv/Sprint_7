@@ -1,13 +1,12 @@
 package model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderResponse {
     private int track;
-
-    public int getTrack() {
-        return track;
-    }
-
-    public void setTrack(int track) {
-        this.track = track;
-    }
 }

@@ -26,7 +26,7 @@ public class LoginCourierTests {
 
     @Test
     @DisplayName("курьер может авторизоваться;")
-    public void loginCourier() {
+    public void loginCourierTest() {
 
 
         // отправляем запрос на логин курьера
@@ -42,7 +42,7 @@ public class LoginCourierTests {
     }
     @Test
     @DisplayName("авторизация без логина")
-    public void loginCourierWithoutLogin() {
+    public void loginCourierWithoutLoginTest() {
 
 
         // Создаем учетные данные без логина (null)
@@ -60,7 +60,7 @@ public class LoginCourierTests {
     }
     @Test
     @DisplayName("авторизация без пароля")
-    public void loginCourierWithoutPassword() {
+    public void loginCourierWithoutPasswordTest() {
 
         // отправляем запрос на логин курьера
         Response loginResponse= courierSteps.loginCourier(CourierCreds.credsFrom(courier));
@@ -81,7 +81,7 @@ public class LoginCourierTests {
     }
     @Test
     @DisplayName("авторизация с пустым логином")
-    public void loginCourierWithEmptyLogin() {
+    public void loginCourierWithEmptyLoginTest() {
 
 
         // Создаем учетные данные без логина (null)
@@ -99,7 +99,7 @@ public class LoginCourierTests {
     }
     @Test
     @DisplayName("авторизация с пустым паролем")
-    public void loginCourierWithEmptyPassword() {
+    public void loginCourierWithEmptyPasswordTest() {
 
         // отправляем запрос на логин курьера
         Response loginResponse= courierSteps.loginCourier(CourierCreds.credsFrom(courier));
@@ -120,7 +120,7 @@ public class LoginCourierTests {
     }
     @Test
     @DisplayName("Система вернёт ошибку, если неправильно указать логин")
-    public void errorIfLoginIsIncorrect() {
+    public void errorIfLoginIsIncorrectTest() {
         // отправляем запрос на логин курьера
         Response loginResponse= courierSteps.loginCourier(CourierCreds.credsFrom(courier));
         // извлекаем id из ответа и сохраняем
@@ -141,7 +141,7 @@ public class LoginCourierTests {
     }
     @Test
     @DisplayName("Система вернёт ошибку, если неправильно указать пароль")
-    public void errorIfPasswordIsIncorrect() {
+    public void errorIfPasswordIsIncorrectTest() {
         // отправляем запрос на логин курьера
         Response loginResponse= courierSteps.loginCourier(CourierCreds.credsFrom(courier));
         // извлекаем id из ответа и сохраняем
@@ -162,7 +162,7 @@ public class LoginCourierTests {
     }
     @Test
     @DisplayName("успешный запрос возвращает id")
-    public void loginCourierReturnId() {
+    public void loginCourierReturnIdTest() {
 
 
         // отправляем запрос на логин курьера

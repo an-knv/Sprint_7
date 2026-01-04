@@ -14,7 +14,7 @@ public class OrderListTests {
 
     @Test
     @DisplayName("в тело ответа возвращается список заказов")
-    public void getOrderList() {
+    public void getOrderListTest() {
 
 
         // отправляем запрос на логин курьера
