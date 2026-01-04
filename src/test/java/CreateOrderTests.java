@@ -1,0 +1,78 @@
+import io.restassured.response.Response;
+import model.Order;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import steps.OrderSteps;
+
+import java.util.List;
+import java.util.stream.Stream;
+
+import static generator.OrderExample.randomOrder;
+import static org.apache.http.HttpStatus.SC_CREATED;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class CreateOrderTests {
+
+    private OrderSteps orderSteps = new OrderSteps();
+
+
+    @Test
+    @DisplayName("Создание заказа")
+    public void createOrderTest() {
+        //создаем случайного курьера
+        Order order = randomOrder();
+        //отправляем запрос на создание заказа
+        Response response = orderSteps.createOrder(order);
+        // проверяем ответ
+        orderSteps.checkCreateOrderStatusCode(response, SC_CREATED);
+        orderSteps.printResponseBody(response);
+        //извлекаем трек
+        int track = orderSteps.extractTrackFromResponse(response);
+        assertTrue(track > 0, "В ответе положительный track");
+        System.out.println("Заказ успешно создан с track: " + track);
+        orderSteps.cancelOrder(track);
+        System.out.println("Отменен заказ: " + track);
+    }
+
+    @ParameterizedTest(name = "Создание заказа с разными цветами")
+    @MethodSource("colorCombinations")
+    @DisplayName("Проверка создания заказа с разными цветами")
+    public void createOrderWithDifferentColorsTest(List<String> colors) {
+        // Создаем заказ с указанными цветами
+        Order order = new Order(
+                "Anna",
+                "Konovalova",
+                "Klenovaya 2",
+                "Mitino",
+                "+71234567899",
+                3,
+                "2026-01-04",
+                "TestOrder",
+                colors
+        );
+
+        // Отправляем запрос на создание заказа
+        Response response = orderSteps.createOrder(order);
+        orderSteps.checkCreateOrderStatusCode(response, SC_CREATED);
+        orderSteps.printResponseBody(response);
+        int track = orderSteps.extractTrackFromResponse(response);
+        System.out.println("Заказ успешно создан с track: " + track + ", цвета: " + colors);
+        // Отменяем заказ
+        orderSteps.cancelOrder(track);
+        System.out.println("Отменен заказ с track: " + track);
+    }
+
+    // Тестовые данные
+    private static Stream<Arguments> colorCombinations() {
+        return Stream.of(
+                Arguments.of(List.of("BLACK")),
+                Arguments.of(List.of("GREY")),
+                Arguments.of(List.of("BLACK", "GREY")),
+                Arguments.of(List.of())
+        );
+    }
+
+}
